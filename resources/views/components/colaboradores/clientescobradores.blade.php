@@ -54,7 +54,6 @@
                     <th scope="col">Situacion buro</th>
                     <th scope="col">Avales</th>
                     <th scope="col">Prestamos</th>
-                    <th scope="col">Plan de pago</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -82,11 +81,6 @@
                         </td>
                         <td scope="col">
                             <a href="{{url('showprestamos',[$row->clienteID])}}"class="btn btn-secondary">Prestamos</a>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PlanModal-{{$row->id}}">
-                                Asignar Plan de pago
-                            </button>
                         </td>
                     </tr>
                 @endforeach
