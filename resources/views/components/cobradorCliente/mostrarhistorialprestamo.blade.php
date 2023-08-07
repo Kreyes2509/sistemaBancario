@@ -65,8 +65,8 @@
             </div>
         </div>
     </div>
-
     <div class="divContainer1">
+        <h2>Plan de pago</h2>
         <div class="divscroll">
             <table id="myTable1" class="table table-light">
             <thead class="table-primary">

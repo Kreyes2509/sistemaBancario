@@ -34,23 +34,28 @@ Route::middleware(['auth'])->group(function () {
     Route::post('perfilupdate/{id}', [AuthController::class,'updatePassword']);
     Route::get('singOut', [AuthController::class,'singOut'])->name('singOut');
 
-    Route::resource('empleados', EmpleadoController::class);
-    Route::resource('cobradores', CobradorController::class);
-    Route::resource('clientes', ClienteController::class);
-    Route::resource('avales', AvalController::class);
-    Route::resource('prestamos', PrestamosController::class);
-    Route::resource('clientecobrador', CobradorClienteController::class);
-
-    Route::get('clienteCobrador', [CobradorController::class,'clienteCobradorView']);
 
     Route::post('generarplanpago/{id}',[CobradorClienteController::class,'generarPlanPago']);
     Route::post('storeclicobra/{id}',[CobradorClienteController::class,'storeClientCollecting']);
     Route::get('showavales/{id}',[CobradorClienteController::class,'showAvales']);
     Route::get('showprestamos/{id}',[CobradorClienteController::class,'showPrestamos']);
     Route::get('showhistorialprestamo/{id}',[CobradorClienteController::class,'showHistorialPrestamo']);
+});
 
+Route::middleware(['admin'])->group(function () {
+    Route::resource('empleados', EmpleadoController::class);
+});
+
+Route::middleware(['cobradores'])->group(function () {
+    Route::get('clienteCobrador', [CobradorController::class,'clienteCobradorView']);
+});
+
+Route::middleware(['empleados'])->group(function () {
+    Route::resource('cobradores', CobradorController::class);
+    Route::resource('clientes', ClienteController::class);
+    Route::resource('avales', AvalController::class);
+    Route::resource('prestamos', PrestamosController::class);
+    Route::resource('clientecobrador', CobradorClienteController::class);
     Route::post('rechazarprestamo/{id}',[ PrestamosController::class,'rejectLoan']);
-
     Route::get('historalprestamo/{id}',[HistorialController::class,'getLoanHistory']);
-
 });
