@@ -63,23 +63,19 @@ class EmpleadoController extends Controller
         $empleado -> nombreUsuario = $request -> input('nombreUsuario');
         $empleado -> fechaCumple = $request -> input('fechaCumple');
         $empleado -> email = $request -> input('email');
-        if($request->hasFile('imagen')){
+        if ($request->hasFile('imagen')) {
             $file = $request->file('imagen');
-            //dd($file);
             $disk = Storage::disk("do");
             $finalPath = 'img/';
-            $filename = time() . '-' .$file->getClientOriginalName();
+            $filename = time() . '-' . $file->getClientOriginalName();
             $realPath = $file->getRealPath();
-            $storage = Storage::disk("do")->put("/fotosPerfil/img/".$filename, file_get_contents($realPath),'public');
+            $storage = $disk->put("/fotosPerfil/img/" . $filename, file_get_contents($realPath), 'public');
 
-            $url = Storage::disk('do')->url('/fotosPerfil/img/'.$filename);
-            //$uploadFile = $request->file('image')->move($finalPath, $filename);
-            //$new_product->Img = $finalPath.$filename;
+            $url = $disk->url('fotosPerfil/img/' . $filename);
             $empleado->imagen = $url;
-        }
-        if($request -> input('imagen') == null)
-        {
-            $empleado->imagen = "https://bantolin.nyc3.digitaloceanspaces.com/fotos/fotoPerfil.png";
+
+            dump($url);
+
         }
         $empleado -> password = bcrypt('12345678');
         $empleado -> rolId = $request -> input('rolId');
@@ -156,15 +152,6 @@ class EmpleadoController extends Controller
             //$uploadFile = $request->file('image')->move($finalPath, $filename);
             //$new_product->Img = $finalPath.$filename;
             $empleado->imagen = $url;
-        }
-        if($request -> file('imagen') != null)
-        {
-            $empleado->imagen = $request -> file('imagen');
-        }
-        if($request -> file('imagen') == null)
-        {
-            $userimg = User::where('id','=',$id)->first();
-            $empleado->imagen = $userimg->imagen;
         }
         $empleado ->rolId = $request -> input('rolId');
         if($empleado -> save()){
