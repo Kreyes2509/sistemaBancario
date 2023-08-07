@@ -53,5 +53,25 @@ class ClienteSeeder extends Seeder
         $cliente2 -> situacion_buro = "Uso excesivo de crédito";
         $cliente2 -> save();
 
+        $cliente3 = new Cliente();
+        $cliente3 -> apellido_paterno = "Reyes";
+        $cliente3 -> apellido_materno = "Rubio";
+        $cliente3 -> nombres = "Kenneth Efrem";
+        $cliente3 -> direccion = "cerrada san miguel";
+        $cliente3 -> numero_exterior = "1907";
+        $cliente3 -> codigo_postal = "27054";
+        $cliente3 -> ciudad = "Torreón";
+        $cliente3 -> estado = "Coahuila";
+        $cliente3 -> telefono = "8714579081";
+        $cliente3 -> email = "kenneth@gmail.com";
+        $cliente3 -> empleo_actual = "Desarrollador";
+        $cliente3 -> sueldo = 50000;
+        $cliente3 -> nombre_empresa = "Zaro trasnportation";
+        $cliente3 -> antiguedad = "2 años";
+        $cliente3 -> telefono_empresa = "8712809078";
+        $cliente3 -> direccion_empresa = "Independecia comonfort #123";
+        $cliente3 -> situacion_buro = "bueno";
+        $cliente3 -> save();
+
     }
 }

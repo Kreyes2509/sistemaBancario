@@ -91,7 +91,7 @@
         counter++;
 
         // Si el contador llega a 10 (10 segundos), refrescar la página
-        if (counter === 10) {
+        if (counter === 20) {
             location.reload();
         }
         }

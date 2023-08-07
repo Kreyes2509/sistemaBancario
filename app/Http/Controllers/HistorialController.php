@@ -20,7 +20,7 @@ class HistorialController extends Controller
     public function index()
     {
         $empleados = DB::table('prestamos')
-                       ->join('historialPrestamo', 'prestamos.id', '=', 'historialPrestamo.prestamoID')
+                       ->join('historialprestamo', 'prestamos.id', '=', 'historialprestamo.prestamoID')
                        ->select('prestamos.*')
                        ->get();
     }
@@ -28,8 +28,8 @@ class HistorialController extends Controller
     public function getLoanHistory($id)
     {
         $historal = DB::table('prestamos')
-        ->join('historialPrestamo', 'prestamos.id', '=', 'historialPrestamo.prestamoID')
-        ->select('prestamos.*','historialPrestamo.*', 'historialPrestamo.id AS histoID')->where('historialPrestamo.prestamoID','=',$id)
+        ->join('historialprestamo', 'prestamos.id', '=', 'historialprestamo.prestamoID')
+        ->select('prestamos.*','historialprestamo.*', 'historialprestamo.id AS histoID')->where('historialprestamo.prestamoID','=',$id)
         ->get();
 
         foreach($historal as $row)
@@ -42,9 +42,9 @@ class HistorialController extends Controller
             }
         }
 
-        $habilitarBotonCobrador = Historialprestamo::select('prestamos.*','historialPrestamo.*', 'historialPrestamo.id AS histoID')
-                    ->join('prestamos', 'prestamos.id', '=', 'historialPrestamo.prestamoID')
-                    ->where('historialPrestamo.prestamoID','=',$id)->where('historialPrestamo.estado_pago','=','PAGO ATRASADO')
+        $habilitarBotonCobrador = Historialprestamo::select('prestamos.*','historialprestamo.*', 'historialprestamo.id AS histoID')
+                    ->join('prestamos', 'prestamos.id', '=', 'historialprestamo.prestamoID')
+                    ->where('historialprestamo.prestamoID','=',$id)->where('historialprestamo.estado_pago','=','PAGO ATRASADO')
                     ->count();
 
 
@@ -54,10 +54,10 @@ class HistorialController extends Controller
                     ->where('users.rolId','=',3)
                     ->get();
 
-        $cliente =  Historialprestamo::select('prestamos.*','historialPrestamo.*', 'historialPrestamo.id AS histoID','clientes.id AS clienteID')
-                                ->join('prestamos', 'prestamos.id', '=', 'historialPrestamo.prestamoID')
+        $cliente =  Historialprestamo::select('prestamos.*','historialprestamo.*', 'historialprestamo.id AS histoID','clientes.id AS clienteID')
+                                ->join('prestamos', 'prestamos.id', '=', 'historialprestamo.prestamoID')
                                 ->join('clientes','clientes.id','=','prestamos.clienteID')
-                                ->where('historialPrestamo.prestamoID','=',$id)
+                                ->where('historialprestamo.prestamoID','=',$id)
                                 ->first();
 
         $idCliente = $cliente->clienteID;
