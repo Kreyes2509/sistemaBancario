@@ -35,7 +35,7 @@ Route::middleware(['jwt.verify'])->group(function () {
     });
 
     Route::get('/getclints/{id}',[CobradorController::class,'showclients']);
-    Route::get('/getprestamo/{id}',[PrestamosController::class,'showclients']);
+    Route::get('/getprestamo/{id}',[PrestamosController::class,'getPrestamoClient']);
     Route::get('/gethistorialprestamo/{id}',[PrestamosController::class,'ApiHistorialPrestamo']);
 
 });

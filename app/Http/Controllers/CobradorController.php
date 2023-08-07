@@ -110,11 +110,7 @@ class CobradorController extends Controller
             ]);
         }
 
-        return response()->json([
-            'message' => 'clientes',
-            'data'=>$cobrador,
-            'status'=>200
-        ]);
+        return response()->json($cobrador);
     }
 
     /**

@@ -179,11 +179,7 @@ class PrestamosController extends Controller
             ]);
         }
 
-        return response()->json([
-            'message' => 'prestamos',
-            'data'=>$prestamos,
-            'status'=>200
-        ]);
+        return response()->json($prestamos);
     }
 
     public function ApiHistorialPrestamo($id)
@@ -201,11 +197,7 @@ class PrestamosController extends Controller
             ]);
         }
 
-        return response()->json([
-            'message' => 'historial del prestamo',
-            'data'=>$historal,
-            'status'=>200
-        ]);
+        return response()->json($historal);
 
     }
 
