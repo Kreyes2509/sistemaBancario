@@ -49,6 +49,10 @@ class AuthController extends Controller
         }
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            if(Auth::user()->status_password == 0)
+            {
+                return redirect('/dashboard')->with('msg','Cambia tu contraseña en el apartado de perfil');
+            }
             return redirect('/dashboard')->with('msg','Bienvenido!');
         }
 
@@ -62,5 +66,23 @@ class AuthController extends Controller
         Auth::logout();
 
         return redirect('/login')->with('msg','singOut');
+    }
+
+    public function perfilView()
+    {
+        $user = User::where('users.id','=',Auth::user()->id)->get();
+
+        return view('auth.perfil',compact('user'));
+    }
+
+    public function updatePassword(Request $request,$id)
+    {
+        $perfil = User::find($id);
+        $contraseña = bcrypt($request->input('password'));
+        $perfil->password = $contraseña;
+        $perfil->status_password = 1;
+        $perfil->save();
+
+        return redirect('/perfil')->with('msg','actualizado correctamente');
     }
 }

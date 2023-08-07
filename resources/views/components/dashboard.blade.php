@@ -164,5 +164,18 @@
     </script>
 @endif
 
+@if (session('msg') == 'Cambia tu contraseña en el apartado de perfil')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Cambia tu contraseña en el apartado de perfil',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+@endif
+
 
 </html>

@@ -16,7 +16,7 @@
         </div>
         <div class="profile">
             <img src="{{Auth::user()->imagen}}" alt="Foto de perfil">
-            <h5>{{Auth::user()->nombreUsuario}}</h5>
+            <a style="text-decoration: none;color: inherit;" href="/perfil"><h5>{{Auth::user()->nombreUsuario}}</h5></a>
         </div>
     </div>
     <div class="menu-toggle">
@@ -28,11 +28,12 @@
         @if (Auth::user()->rolId == 1)
             <li><a href="/empleados">Empleados</a></li><br>
         @endif
-            <li><a href="/clientes">Clientes</a></li><br>
         @if (Auth::user()->rolId == 1 || Auth::user()->rolId == 2)
+            <li><a href="/clientes">Clientes</a></li><br>
             <li><a href="/cobradores">Cobradores</a></li><br>
             <li><a href="/avales">Avales</a></li><br>
             <li><a href="/prestamos">Prestamos</a></li><br>
+
         @endif
         <li><a href="{{url('singOut')}}">Cerrar Sesión</a></li><br>
       </ul>

@@ -30,6 +30,8 @@ Route::post('sesion', [AuthController::class,'login'])->name('sesion');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard',[AuthController::class,'dashboardView'])->name('dashboardView');
+    Route::get('perfil', [AuthController::class,'perfilView'])->name('perfilView');
+    Route::post('perfilupdate/{id}', [AuthController::class,'updatePassword']);
     Route::get('singOut', [AuthController::class,'singOut'])->name('singOut');
 
     Route::resource('empleados', EmpleadoController::class);
