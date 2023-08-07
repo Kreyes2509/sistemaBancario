@@ -74,8 +74,6 @@ class EmpleadoController extends Controller
             $url = $disk->url('fotosPerfil/img/' . $filename);
             $empleado->imagen = $url;
 
-            dump($url);
-
         }
         $empleado -> password = bcrypt('12345678');
         $empleado -> rolId = $request -> input('rolId');
