@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cobrador;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Models\ClienteCobrador;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreCobradorRequest;
+use App\Http\Requests\UpdateCobradorRequest;
 
 class CobradorController extends Controller
 {
@@ -50,17 +53,8 @@ class CobradorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCobradorRequest $request)
     {
-        $request -> validate([
-
-            'nombres' => 'required',
-            'apellidos' => 'required',
-            'nombreUsuario' => 'required',
-            'fechaCumple' => 'required',
-            'email' => 'required|email',
-        ]);
-
         $empleado = new User();
         $empleado -> nombres = $request -> input('nombres');
         $empleado -> apellidos = $request -> input('apellidos');
@@ -134,16 +128,8 @@ class CobradorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCobradorRequest $request, $id)
     {
-        $request -> validate([
-            'nombres' => 'required',
-            'apellidos' => 'required',
-            'nombreUsuario' => 'required',
-            'fechaCumple' => 'required',
-            'email' => 'required|email',
-        ]);
-
         $empleado = User::findOrFail($id);
         $empleado ->nombres = $request -> input('nombres');
         $empleado ->apellidos = $request -> input('apellidos');

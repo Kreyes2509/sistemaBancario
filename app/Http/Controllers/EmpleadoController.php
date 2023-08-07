@@ -10,8 +10,10 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\CobradorController;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cobrador;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Requests\StoreEmpleadoRequest;
+use App\Http\Requests\UpdateEmpleadoRequest;
 
 class EmpleadoController extends Controller
 {
@@ -46,17 +48,8 @@ class EmpleadoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEmpleadoRequest $request)
     {
-        $request -> validate([
-
-            'nombres' => 'required',
-            'apellidos' => 'required',
-            'nombreUsuario' => 'required',
-            'fechaCumple' => 'required',
-            'email' => 'required|email',
-        ]);
-
         $empleado = new User();
         $empleado -> nombres = $request -> input('nombres');
         $empleado -> apellidos = $request -> input('apellidos');
@@ -119,17 +112,8 @@ class EmpleadoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateEmpleadoRequest $request, $id)
     {
-
-        $request ->validate([
-
-            'nombres' => 'required',
-            'apellidos' => 'required',
-            'nombreUsuario' => 'required',
-            'fechaCumple' => 'required',
-            'email' => 'required|email',
-        ]);
 
         $empleado = User::findOrFail($id);
         $empleado -> nombres = $request -> input('nombres');

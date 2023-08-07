@@ -20,11 +20,11 @@
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text"><i class="fa-solid fa-graduation-cap"></i></span>
-                  <input type="date" minlength="0" name="fechaCumple" class="form-control" placeholder="correo" aria-label="Username" aria-describedby="basic-addon1">
+                  <input type="date"  name="fechaCumple" class="form-control" placeholder="correo" aria-label="Username" aria-describedby="basic-addon1">
               </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="fa-solid fa-graduation-cap"></i></span>
-                    <input type="email" minlength="0" name="email" class="form-control" placeholder="correo" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="email"  name="email" class="form-control" placeholder="correo" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="fa-solid fa-graduation-cap"></i></span>

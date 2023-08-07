@@ -66,7 +66,7 @@
                                 <td>{{$row->plazo_pago}}</td>
                                 <td>{{\Carbon\Carbon::parse($row->fecha_solicitud)->format('d/m/Y')}}</td>
                                 @if ($row->fecha_aprobacion == null)
-                                    <td>En espera de aprovacion</td>
+                                    <td>En espera de aprobación</td>
                                 @else
                                 <td>{{\Carbon\Carbon::parse($row->fecha_aprobacion)->format('d/m/Y')}}</td>
                                 @endif
@@ -74,7 +74,7 @@
                                 <td>{{$row->cuota}}</td>
                                 <td>{{$row->tipo_prestamo}}</td>
                                 @if ($row->estado_prestamo == 'PENDIENTE')
-                                <td style="background-color: rgb(215, 172, 0);color:white">En espera de aprovacion</td>
+                                <td style="background-color: rgb(215, 172, 0);color:white">En espera de aprobación</td>
                                 @elseif ($row->estado_prestamo == 'ACTIVO')
                                     <td style="background-color: green;color:white">Prestamo activo</td>
                                 @else
