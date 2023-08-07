@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\ClienteCobrador;
+use App\Models\PlanPago;
 use App\Models\Cobrador;
 use App\Models\Aval;
 use App\Models\Cliente;
@@ -46,6 +47,23 @@ class CobradorClienteController extends Controller
     {
 
     }
+
+    public function generarPlanPago($id)
+    {
+        $prestamo = Prestamo::find($id);
+
+        $planpago = new PlanPago();
+        $planpago->plazo_pago = 'SEMANAL';
+        $calcularCuota = $prestamo->cuota / 4;
+        $planpago->cuota = $calcularCuota;
+        $planpago->prestamoID = $id;
+        if( $planpago->save())
+        {
+            return  back()->with('msg', 'añadido correctamente');
+        }
+        return  back()->with('msg', 'ocurrio un error');
+    }
+
 
     public function storeClientCollecting(Request $request,$id)
     {
@@ -88,7 +106,15 @@ class CobradorClienteController extends Controller
         ->select('prestamos.*','historialprestamo.*', 'historialprestamo.id AS histoID')->where('historialprestamo.prestamoID','=',$id)
         ->get();
 
-        return view('components.cobradorCliente.mostrarhistorialprestamo',compact('historal'));
+        $prestamo = Prestamo::where('prestamos.id','=',$id)->first();
+
+        $prestamoID = $prestamo->id;
+
+        $planPago = PlanPago::where('planpago.prestamoID','=',$id)->get();
+
+        $validarBoton = PlanPago::where('planpago.prestamoID','=',$id)->count();
+
+        return view('components.cobradorCliente.mostrarhistorialprestamo',compact('historal','planPago','validarBoton','prestamoID'));
     }
 
 

@@ -15,14 +15,6 @@
     @endsection
 
     @section('container')
-    <div class="container text-center">
-        <div class="row">
-            <div class="row row-cols-auto ">
-                <div class="col-2">
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="divContainer1">
         <div class="divscroll">
             <table id="myTable1" class="table table-light">
@@ -59,6 +51,61 @@
             </table>
         </div>
     </div>
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="row row-cols-auto ">
+                <div class="col-2">
+                    @if ($validarBoton < 1)
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Generar Plan de pago
+                        </button>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divContainer1">
+        <div class="divscroll">
+            <table id="myTable1" class="table table-light">
+            <thead class="table-primary">
+                <tr>
+                <th scope="col">Periodo</th>
+                <th scope="col">Cuota</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach ($planPago as $row)
+                    <tr>
+                        <th scope="col">{{$row->plazo_pago}}</th>
+                        <th scope="col">{{$row->cuota}}</th>
+                    </tr>
+                @endforeach
+            </tbody>
+            </table>
+            @if (count($planPago) <= 0)
+            <h4>No tienes un plan de pago asignado</h4>
+        @endif
+        </div>
+    </div>
+
+    @include('components.cobradorCliente.addplanpago')
+
+
     @endsection
+
+    @if (session('msg') == 'añadido correctamente')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title:'Plan de pago generado',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+    @endif
 </body>
 </html>

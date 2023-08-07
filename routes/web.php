@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('clienteCobrador', [CobradorController::class,'clienteCobradorView']);
 
+    Route::post('generarplanpago/{id}',[CobradorClienteController::class,'generarPlanPago']);
     Route::post('storeclicobra/{id}',[CobradorClienteController::class,'storeClientCollecting']);
     Route::get('showavales/{id}',[CobradorClienteController::class,'showAvales']);
     Route::get('showprestamos/{id}',[CobradorClienteController::class,'showPrestamos']);
