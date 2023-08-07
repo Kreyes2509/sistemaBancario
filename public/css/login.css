@@ -1,0 +1,48 @@
+body{
+    margin-top: 100px;
+    background-image: linear-gradient(rgba(5, 10, 5, 0.80), rgba(0, 0, 0, 0.8)), url(https://bantolin.nyc3.digitaloceanspaces.com/fotos/fondoBanco.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .logo {
+    flex: 1;
+    text-align: center;
+  }
+
+  .form {
+    flex: 1;
+    text-align: center;
+  }
+
+  .formulario {
+    padding: 20px;
+    border-radius: 15px;
+    border-color: white;
+    border: 2px solid #000;
+    animation: bordeAnimado 1s infinite;
+  }
+
+.divform {
+    width: 80%;
+}
+
+@keyframes bordeAnimado {
+    0% {
+      border-color: #000;
+    }
+    50% {
+      border-color: rgb(255, 255, 255);
+    }
+    100% {
+      border-color: #000;
+    }
+  }
