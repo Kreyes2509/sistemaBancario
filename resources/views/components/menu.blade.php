@@ -33,7 +33,10 @@
             <li><a href="/cobradores">Cobradores</a></li><br>
             <li><a href="/avales">Avales</a></li><br>
             <li><a href="/prestamos">Prestamos</a></li><br>
+        @endif
 
+        @if (Auth::user()->rolId == 3)
+            <li><a href="/clienteCobrador">Mis clientes</a></li><br>
         @endif
         <li><a href="{{url('singOut')}}">Cerrar Sesión</a></li><br>
       </ul>

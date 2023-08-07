@@ -41,6 +41,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('prestamos', PrestamosController::class);
     Route::resource('clientecobrador', CobradorClienteController::class);
 
+    Route::get('clienteCobrador', [CobradorController::class,'clienteCobradorView']);
+
     Route::post('storeclicobra/{id}',[CobradorClienteController::class,'storeClientCollecting']);
     Route::get('showavales/{id}',[CobradorClienteController::class,'showAvales']);
     Route::get('showprestamos/{id}',[CobradorClienteController::class,'showPrestamos']);

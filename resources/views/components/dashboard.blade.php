@@ -92,58 +92,59 @@
                             </table>
                         </div>
                     </div>
-                @endif
-                  <div class="divContainer1 ">
-                    <h1>Clientes</h1>
-                    <div class="divscroll">
-                        <table class="table table-light">
-                            <thead class="table-primary">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">nombres</th>
-                                    <th scope="col">apellido paterno</th>
-                                    <th scope="col">apellido materno</th>
-                                    <th scope="col">direccionr</th>
-                                    <th scope="col">numero exterior</th>
-                                    <th scope="col">codigo postal</th>
-                                    <th scope="col">ciudad</th>
-                                    <th scope="col">estado</th>
-                                    <th scope="col">telefono</th>
-                                    <th scope="col">email</th>
-                                    <th scope="col">empleo actual</th>
-                                    <th scope="col">nombre empresa</th>
-                                    <th scope="col">antiguedad</th>
-                                    <th scope="col">telefono empresa</th>
-                                    <th scope="col">direccion empresa</th>
-                                    <th scope="col">situacion buro</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-group-divider">
-                                @foreach ($clientes as $row)
+
+                    <div class="divContainer1 ">
+                        <h1>Clientes</h1>
+                        <div class="divscroll">
+                            <table class="table table-light">
+                                <thead class="table-primary">
                                     <tr>
-                                        <td scope="col">{{$row->id}}</td>
-                                        <td scope="col">{{$row->nombres}}</td>
-                                        <td scope="col">{{$row->apellido_paterno}}</td>
-                                        <td scope="col">{{$row->apellido_materno}}</td>
-                                        <td scope="col">{{$row->direccion}}</td>
-                                        <td scope="col">{{$row->numero_exterior}}</td>
-                                        <td scope="col">{{$row->codigo_postal}}</td>
-                                        <td scope="col">{{$row->ciudad}}</td>
-                                        <td scope="col">{{$row->estado}}</td>
-                                        <td scope="col">{{$row->telefono}}</td>
-                                        <td scope="col">{{$row->email}}</td>
-                                        <td scope="col">{{$row->empleo_actual}}</td>
-                                        <td scope="col">{{$row->nombre_empresa}}</td>
-                                        <td scope="col">{{$row->antiguedad}}</td>
-                                        <td scope="col">{{$row->telefono_empresa}}</td>
-                                        <td scope="col">{{$row->direccion_empresa}}</td>
-                                        <td scope="col">{{$row->situacion_buro}}</td>
+                                        <th scope="col">#</th>
+                                        <th scope="col">nombres</th>
+                                        <th scope="col">apellido paterno</th>
+                                        <th scope="col">apellido materno</th>
+                                        <th scope="col">direccionr</th>
+                                        <th scope="col">numero exterior</th>
+                                        <th scope="col">codigo postal</th>
+                                        <th scope="col">ciudad</th>
+                                        <th scope="col">estado</th>
+                                        <th scope="col">telefono</th>
+                                        <th scope="col">email</th>
+                                        <th scope="col">empleo actual</th>
+                                        <th scope="col">nombre empresa</th>
+                                        <th scope="col">antiguedad</th>
+                                        <th scope="col">telefono empresa</th>
+                                        <th scope="col">direccion empresa</th>
+                                        <th scope="col">situacion buro</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                  </div>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    @foreach ($clientes as $row)
+                                        <tr>
+                                            <td scope="col">{{$row->id}}</td>
+                                            <td scope="col">{{$row->nombres}}</td>
+                                            <td scope="col">{{$row->apellido_paterno}}</td>
+                                            <td scope="col">{{$row->apellido_materno}}</td>
+                                            <td scope="col">{{$row->direccion}}</td>
+                                            <td scope="col">{{$row->numero_exterior}}</td>
+                                            <td scope="col">{{$row->codigo_postal}}</td>
+                                            <td scope="col">{{$row->ciudad}}</td>
+                                            <td scope="col">{{$row->estado}}</td>
+                                            <td scope="col">{{$row->telefono}}</td>
+                                            <td scope="col">{{$row->email}}</td>
+                                            <td scope="col">{{$row->empleo_actual}}</td>
+                                            <td scope="col">{{$row->nombre_empresa}}</td>
+                                            <td scope="col">{{$row->antiguedad}}</td>
+                                            <td scope="col">{{$row->telefono_empresa}}</td>
+                                            <td scope="col">{{$row->direccion_empresa}}</td>
+                                            <td scope="col">{{$row->situacion_buro}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                @endif
             </div>
         </div>
     @endsection

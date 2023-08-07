@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cobrador;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Models\ClienteCobrador;
 use Illuminate\Support\Facades\Storage;
@@ -24,6 +26,17 @@ class CobradorController extends Controller
                        ->get();
 
         return view('components.colaboradores.cobradores',compact('cobradores'));
+    }
+
+    public function clienteCobradorView()
+    {
+        $clientes =  $cobradores = ClienteCobrador::select('clientes.*','cobradores.*','clientes.id AS clienteID')->join('clientes','clientes.id','=','cliente_cobrador.clienteID')
+        ->join('cobradores','cobradores.userID','=','cliente_cobrador.cobradorID')
+        ->join('users','users.id','=','cobradores.userID')
+        ->where('users.id','=',Auth::user()->id)
+        ->get();
+
+        return view('components.colaboradores.clientescobradores',compact('clientes'));
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Historialprestamo;
 use App\Http\Controllers\PrestamosController;
+use App\Models\ClienteCobrador;
 use App\Models\Prestamo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +33,11 @@ class HistorialController extends Controller
         ->select('prestamos.*','historialprestamo.*', 'historialprestamo.id AS histoID')->where('historialprestamo.prestamoID','=',$id)
         ->get();
 
+        $historialCliente = DB::table('prestamos')
+        ->join('historialprestamo', 'prestamos.id', '=', 'historialprestamo.prestamoID')
+        ->select('prestamos.*','historialprestamo.*', 'historialprestamo.id AS histoID')->where('historialprestamo.prestamoID','=',$id)
+        ->first();
+
         foreach($historal as $row)
         {
             if(Carbon::now() > $row->fechaVencimiento && $row->estado_pago == 'PENDIENTE')
@@ -42,10 +48,18 @@ class HistorialController extends Controller
             }
         }
 
+        $validarcliCobrador = ClienteCobrador::where('cliente_cobrador.clienteID','=',$historialCliente->clienteID)->count();
+
+
         $habilitarBotonCobrador = Historialprestamo::select('prestamos.*','historialprestamo.*', 'historialprestamo.id AS histoID')
                     ->join('prestamos', 'prestamos.id', '=', 'historialprestamo.prestamoID')
                     ->where('historialprestamo.prestamoID','=',$id)->where('historialprestamo.estado_pago','=','PAGO ATRASADO')
                     ->count();
+
+        if($validarcliCobrador >= 1)
+        {
+            $habilitarBotonCobrador = 0;
+        }
 
 
         $cobradores = DB::table('users')

@@ -84,8 +84,8 @@ class CobradorClienteController extends Controller
     public function showHistorialPrestamo($id)
     {
         $historal = DB::table('prestamos')
-        ->join('historialPrestamo', 'prestamos.id', '=', 'historialPrestamo.prestamoID')
-        ->select('prestamos.*','historialPrestamo.*', 'historialPrestamo.id AS histoID')->where('historialPrestamo.prestamoID','=',$id)
+        ->join('historialprestamo', 'prestamos.id', '=', 'historialprestamo.prestamoID')
+        ->select('prestamos.*','historialprestamo.*', 'historialprestamo.id AS histoID')->where('historialprestamo.prestamoID','=',$id)
         ->get();
 
         return view('components.cobradorCliente.mostrarhistorialprestamo',compact('historal'));
