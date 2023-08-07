@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Cobrador;
 
 class UserSeeder extends Seeder
 {
@@ -53,5 +54,13 @@ class UserSeeder extends Seeder
             'password'=>bcrypt('12345678'),
             'rolId'=>3,
          ]);
+
+         $cobrador = new Cobrador();
+         $cobrador -> sueldo = 10000;
+         $cobrador -> telefono = '8712123412';
+         $cobrador -> email_empresa = 'brenda@BHermanos.com';
+         $cobrador -> userID = 4;
+         $cobrador->save();
+
     }
 }

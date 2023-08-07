@@ -7,7 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="{{url('cobradores')}}">
+            <form method="POST" action="{{url('cobradores')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" name="nombres" placeholder="Nombres" aria-label="Username">

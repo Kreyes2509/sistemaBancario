@@ -8,6 +8,7 @@ use App\Models\Cobrador;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\ClienteCobrador;
+use Illuminate\Support\Facades\Storage;
 
 class CobradorController extends Controller
 {
@@ -54,9 +55,17 @@ class CobradorController extends Controller
         $empleado -> fechaCumple = $request -> input('fechaCumple');
         $empleado -> email = $request -> input('email');
         $empleado -> imagen = $request -> input('imagen');
-        if($request->input('imagen') == null)
-        {
-            $empleado->imagen = "https://static-00.iconduck.com/assets.00/avatar-default-symbolic-icon-2048x1949-pq9uiebg.png";
+        if ($request->hasFile('imagen')) {
+            $file = $request->file('imagen');
+            $disk = Storage::disk("do");
+            $finalPath = 'img/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $realPath = $file->getRealPath();
+            $storage = $disk->put("/fotosPerfil/img/" . $filename, file_get_contents($realPath), 'public');
+
+            $url = $disk->url('fotosPerfil/img/' . $filename);
+            $empleado->imagen = $url;
+
         }
         $empleado -> password = bcrypt('12345678');
         $empleado -> rolId = 3;
@@ -128,14 +137,17 @@ class CobradorController extends Controller
         $empleado ->nombreUsuario = $request -> input('nombreUsuario');
         $empleado ->fechaCumple = $request -> input('fechaCumple');
         $empleado ->email = $request -> input('email');
-        if($request -> file('imagen') != null)
-        {
-            $empleado->imagen = $request -> file('imagen');
-        }
-        if($request -> file('imagen') == null)
-        {
-            $userimg = User::where('id','=',$id)->first();
-            $empleado->imagen = $userimg->imagen;
+        if ($request->hasFile('imagen')) {
+            $file = $request->file('imagen');
+            $disk = Storage::disk("do");
+            $finalPath = 'img/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $realPath = $file->getRealPath();
+            $storage = $disk->put("/fotosPerfil/img/" . $filename, file_get_contents($realPath), 'public');
+
+            $url = $disk->url('fotosPerfil/img/' . $filename);
+            $empleado->imagen = $url;
+
         }
         $empleado ->rolId = 3;
         $empleado ->save();
